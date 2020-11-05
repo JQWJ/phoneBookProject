@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import AddUser from './components/common/AddUser'
 
 import PhoneBookList from './components/common/PhoneBookList'
-// import Add from './components/common/Add';
 
 const Styled = {
 	Body: styled.div`
@@ -30,7 +29,7 @@ const Styled = {
 	height: 50px;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid black;
+	border: 2px solid black;
 	margin : auto;
 
 	`
@@ -76,13 +75,37 @@ function App() {
 				},
 			]
 		},
-	])
+	]);
 
-	const nextId = useRef(4);
-	const onCreate = () => {
-		nextId.current += 1;
+	const handleCreate = () => {								//추가하는 함수
+		setPhoneBookInfos((prevState) => {
+			return prevState.concat({
+				id: prevState.length++,
+				isEditing: false,
+				infos: [
+					{
+						title: '이름',
+						name: 'hello',
+						value: '',
+						type: 'text',
+					},
+					{
+						title: '전화번호',
+						name: 'phoneNumber',
+						value: '',
+						type: 'number',
+					},
+				]
+			})
+		})
 	}
 
+	const handleRemove = () => {
+		setPhoneBookInfos((prevState) => {
+			
+		})
+	}
+ 
 	const handleOnChangePhoneBookInfo = (e, id) => {
 		setPhoneBookInfos((prevState) => {
 			return prevState.map((res) => {
@@ -122,17 +145,17 @@ function App() {
 	return (
 		<Styled.Body>
 			<Styled.Add>
-				<AddUser />
-				</Styled.Add>
+				<AddUser
+					onClick={handleCreate}
+				/>
+			</Styled.Add>
 			<Styled.Container>
 				<Styled.Wrapper>
-
 					<PhoneBookList
 						infos={phoneBookInfos}
 						onChange={handleOnChangePhoneBookInfo}
 						onClickEditButton={handleOnClickPhoneBookInfoEditButton}
 					/>
-
 				</Styled.Wrapper>
 			</Styled.Container>
 		</Styled.Body>

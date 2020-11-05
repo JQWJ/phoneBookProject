@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Input from './Input';
+import RemoveUser from './RemoveUser';
 
 const Styled = {
     Body: styled.div`
@@ -14,9 +15,9 @@ const Styled = {
         font-weight: bold;
     `,
     Row: styled.div`
-        display : flex;
+        display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         width : 100%;
         margin-bottom : ${props => props.bottom}px;
     `,
@@ -32,7 +33,7 @@ const PhoneBookInfo = (props) => {
 
     const { info, onChange, onClickEditButton } = props
 
-    const { id, isEditing, infos } = info
+    const { id, isEditing, infos, } = info
 
 
     const handleChangeInput = (e) => {
@@ -53,11 +54,11 @@ const PhoneBookInfo = (props) => {
         )
     })
 
-
     return (
         <Styled.Body>
             {inputList}
             <Styled.Row>
+
                 <button
                     onClick={e => {
                         e.preventDefault()
@@ -66,6 +67,7 @@ const PhoneBookInfo = (props) => {
                 >
                     {isEditing ? '저장하기' : '수정하기'}
                 </button>
+                <RemoveUser />
             </Styled.Row>
         </Styled.Body>
     );

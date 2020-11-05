@@ -6,7 +6,7 @@ const Styled = {
         display : flex;
         align-items: center;
         justify-content: center;
-        width : 100%;
+        width : 20%;
     `,
     Col: styled.div`
         display : flex;
@@ -18,19 +18,19 @@ const Styled = {
 
 
 
-const AddUser = (props) => {
+const RemoveUser = (props) => {
 
     const { onClick } = props
-
+    
     return (
         <Styled.Body>
             <button
                 onClick={
                     onClick
                 }
-            >추가</button>
+            >삭제하기</button>
         </Styled.Body>
     )
 }
 
-export default AddUser;
+export default RemoveUser;
