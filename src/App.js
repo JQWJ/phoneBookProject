@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import AddUser from './components/common/AddUser'
+import SearchUser from './components/common/SearchUser'
 
 import PhoneBookList from './components/common/PhoneBookList'
 
@@ -37,28 +38,9 @@ const Styled = {
 
 function App() {
 
-
 	const [phoneBookInfos, setPhoneBookInfos] = useState([
 		{
-			id: 1,
-			isEditing: false,
-			infos: [
-				{
-					title: '이름',
-					name: 'hello',
-					value: '',
-					type: 'text',
-				},
-				{
-					title: '전화번호',
-					name: 'phoneNumber',
-					value: '',
-					type: 'number',
-				},
-			]
-		},
-		{
-			id: 2,
+			id: 0,
 			isEditing: false,
 			infos: [
 				{
@@ -79,6 +61,7 @@ function App() {
 
 	const handleCreate = () => {								//추가하는 함수
 		setPhoneBookInfos((prevState) => {
+
 			return prevState.concat({
 				id: prevState.length++,
 				isEditing: false,
@@ -100,12 +83,22 @@ function App() {
 		})
 	}
 
-	const handleRemove = () => {
+	const handleRemove = (id) => {
 		setPhoneBookInfos((prevState) => {
-			
+			return prevState.filter(res => res.id !== id);
 		})
 	}
  
+	const handleChange = () => {
+		setPhoneBookInfos((prevState) => {
+			return prevState.map((res) => {
+				
+			})
+		})
+	}
+
+	
+
 	const handleOnChangePhoneBookInfo = (e, id) => {
 		setPhoneBookInfos((prevState) => {
 			return prevState.map((res) => {
@@ -144,6 +137,11 @@ function App() {
 
 	return (
 		<Styled.Body>
+		<Styled.Add>
+			<SearchUser 
+				onChange = {handleChange}
+			/>
+		</Styled.Add>
 			<Styled.Add>
 				<AddUser
 					onClick={handleCreate}
@@ -155,6 +153,7 @@ function App() {
 						infos={phoneBookInfos}
 						onChange={handleOnChangePhoneBookInfo}
 						onClickEditButton={handleOnClickPhoneBookInfoEditButton}
+						remove={handleRemove}
 					/>
 				</Styled.Wrapper>
 			</Styled.Container>

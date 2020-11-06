@@ -28,7 +28,7 @@ const Styled = {
 
 const PhoneBookList = (props) => {
 
-    const { infos, onChange, onClickEditButton, removeUser } = props
+    const { infos, onChange, onClickEditButton, remove } = props
 
     const list = infos.map((res, i) => {
         return (
@@ -36,10 +36,11 @@ const PhoneBookList = (props) => {
                 key={i}
             >
                 <PhoneBookInfo
+
                     info={res}
                     onChange={onChange}
-                    removeUser={removeUser}
                     onClickEditButton={onClickEditButton}
+                    remove={remove}
                 />
             </Styled.PhoneBookInfoWrapper>
         )

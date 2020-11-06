@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Input from './Input';
-import RemoveUser from './RemoveUser';
 
 const Styled = {
     Body: styled.div`
@@ -30,16 +29,19 @@ const Styled = {
 }
 
 const PhoneBookInfo = (props) => {
-
-    const { info, onChange, onClickEditButton } = props
-
-    const { id, isEditing, infos, } = info
-
-
+    
+    const { info, onChange, onClickEditButton, remove } = props
+    
+    const { id, isEditing, infos } = info
+    
+    
     const handleChangeInput = (e) => {
         onChange(e, id)
     }
-
+    
+    const handleRemove = () => {
+        remove(id)
+    }
 
     const inputList = infos.map((res) => {
         return (
@@ -67,7 +69,11 @@ const PhoneBookInfo = (props) => {
                 >
                     {isEditing ? '저장하기' : '수정하기'}
                 </button>
-                <RemoveUser />
+                <button
+                    onClick={
+                        handleRemove
+                    }
+                >삭제하기</button>
             </Styled.Row>
         </Styled.Body>
     );

@@ -16,21 +16,24 @@ const Styled = {
     `,
 }
 
+const SearchUser = (props) => {
 
-
-const AddUser = (props) => {
-
-    const { onClick } = props
+    const { value } = props
+    
+    const userSearch = (e) => {
+        console.log(e.target.value)
+    }
 
     return (
         <Styled.Body>
-            <button
-                onClick={
-                    onClick
-                }
-            >추가</button>
+            <input 
+                type='text'
+                size='25'
+                value = {value}
+                onChange = {userSearch}
+            />
         </Styled.Body>
     )
 }
 
-export default AddUser;
+export default SearchUser;
