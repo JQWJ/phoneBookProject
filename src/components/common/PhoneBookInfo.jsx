@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Input from './Input';
+import moment from 'moment'
+import 'moment/locale/ko'
+moment.locale('ko')
 
 const Styled = {
     Body: styled.div`
@@ -30,10 +33,9 @@ const Styled = {
 
 const PhoneBookInfo = (props) => {
     
-    const { info, onChange, onClickEditButton, remove } = props
+    const { info, onChange, onClickEditButton, remove, date } = props
     
-    const { id, isEditing, infos } = info
-    
+    const { id, isEditing, infos, isStaic } = info
     
     const handleChangeInput = (e) => {
         onChange(e, id)
@@ -41,6 +43,10 @@ const PhoneBookInfo = (props) => {
     
     const handleRemove = () => {
         remove(id)
+    }
+
+    const isDate = () => {
+        date(isStaic)
     }
 
     const inputList = infos.map((res) => {
@@ -60,7 +66,6 @@ const PhoneBookInfo = (props) => {
         <Styled.Body>
             {inputList}
             <Styled.Row>
-
                 <button
                     onClick={e => {
                         e.preventDefault()

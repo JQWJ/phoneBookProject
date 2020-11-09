@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import AddUser from './components/common/AddUser'
 import SearchUser from './components/common/SearchUser'
-
 import PhoneBookList from './components/common/PhoneBookList'
 
 const Styled = {
@@ -63,7 +62,7 @@ function App() {
 		setPhoneBookInfos((prevState) => {
 
 			return prevState.concat({
-				id: prevState.length++,
+				id: prevState.length + 1,
 				isEditing: false,
 				infos: [
 					{
@@ -91,9 +90,7 @@ function App() {
  
 	const handleChange = () => {
 		setPhoneBookInfos((prevState) => {
-			return prevState.map((res) => {
 				
-			})
 		})
 	}
 
@@ -134,7 +131,6 @@ function App() {
 			})
 		})
 	}
-
 	return (
 		<Styled.Body>
 		<Styled.Add>
